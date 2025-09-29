@@ -22,7 +22,7 @@ function initAudio() {
         audioElement.src = this.value;
         if (wasPlaying) {
             audioElement.play()
-                .then(() => playPauseButton.textContent = 'Pause')
+                .then(() => playPauseButton.textContent = '❚❚')
                 .catch(err => console.error('Playback failed:', err));
         }
     });
@@ -30,19 +30,19 @@ function initAudio() {
     playPauseButton.addEventListener('click', () => {
         if (audioElement.paused) {
             audioElement.play();
-            playPauseButton.textContent = 'Pause';
+            playPauseButton.textContent = '❚❚';
         } else {
             audioElement.pause();
-            playPauseButton.textContent = 'Play';
+            playPauseButton.textContent = '▶';
         }
     });
     
     audioElement.addEventListener('play', () => {
-        playPauseButton.textContent = 'Pause';
+        playPauseButton.textContent = '❚❚';
     });
     
     audioElement.addEventListener('pause', () => {
-        playPauseButton.textContent = 'Play';
+        playPauseButton.textContent = '▶';
     });
     
     audioElement.addEventListener('error', () => {
