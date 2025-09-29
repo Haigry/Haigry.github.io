@@ -566,8 +566,14 @@ function makeWish() {
 }
 
 function showWishPopup() {
-    const popupContainer = document.getElementById('popupContainer');
-    popupContainer.style.display = 'flex';
+    const popupContainerWish = document.getElementById('popupContainerWish');
+    if (!popupContainerWish) {
+        console.error('popupContainerWish not found');
+        return;
+    }
+    
+    popupContainerWish.style.display = 'flex';
+    popupContainerWish.innerHTML = ''; // Clear previous content
     
     const popup = document.createElement('div');
     popup.className = 'popup';
@@ -575,21 +581,21 @@ function showWishPopup() {
         <h3>✨ Make a Wish! ✨</h3>
         <p>Tutup mata, ucapkan doamu...</p>
         <p>Semoga semua harapanmu terkabul! 🌟</p>
-        <button onclick="this.parentElement.remove(); closeWishPopup(); startPetalRain();">Amin ❤️</button>
+        <button onclick="closeWishPopup();">Amin ❤️</button>
     `;
-    popupContainer.appendChild(popup);
+    popupContainerWish.appendChild(popup);
     setTimeout(() => popup.classList.add('show'), 100);
 }
 
 function closeWishPopup() {
     const popup = document.querySelector('.popup');
-    const popupContainer = document.getElementById('popupContainer');
+    const popupContainerWish = document.getElementById('popupContainerWish');
     
     if (popup) {
         popup.classList.remove('show');
         setTimeout(() => {
-            popupContainer.style.display = 'none';
-            popupContainer.innerHTML = '';
+            popupContainerWish.style.display = 'none';
+            popupContainerWish.innerHTML = '';
         }, 400);
     }
 }
