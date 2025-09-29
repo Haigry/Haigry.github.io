@@ -96,7 +96,6 @@ function pilihNama(nama) {
     displayEl.textContent = `Nama terpilih: ${nama}`;
 }
 
-// Add all other functions
 function toggleAudio() {
     const playPauseButton = document.getElementById('playPauseButton');
     if (audioElement.paused) {
@@ -193,7 +192,7 @@ function buatPartikel() {
     const container = document.getElementById('particlesContainer');
     
     function animate() {
-        if (Math.random() < 0.05) { // Reduced from 0.1 to 0.05
+        if (Math.random() < 0.08) {
             const particleConfig = particles[Math.floor(Math.random() * particles.length)];
             const particle = document.createElement('div');
             
@@ -205,13 +204,10 @@ function buatPartikel() {
             }
 
             particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.setProperty('--drift', (Math.random() * 20 - 10).toFixed(2)); // Random drift
-            particle.style.setProperty('--spin', Math.random().toFixed(2)); // Random spin
-            particle.style.animationDelay = `${Math.random() * 2}s`;
-            particle.style.animationDuration = `${8 + Math.random() * 6}s`; // Increased duration variety
+            particle.style.setProperty('--drift', (Math.random() * 20 - 10).toFixed(2));
             
             container.appendChild(particle);
-            setTimeout(() => particle.remove(), 10000);
+            setTimeout(() => particle.remove(), 15000);
         }
         requestAnimationFrame(animate);
     }
@@ -222,12 +218,14 @@ function buatKembangApi() {
     const container = document.getElementById('fireworksContainer');
     
     function createFirework() {
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.03) {
             const firework = document.createElement('div');
             firework.className = 'firework';
-            firework.style.left = `${Math.random() * 100}vw`;
-            firework.style.top = `${Math.random() * 100}vh`;
-            firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            firework.style.left = `${20 + Math.random() * 60}vw`;
+            firework.style.top = `${20 + Math.random() * 60}vh`;
+            const hue = Math.random() * 360;
+            firework.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+            firework.style.boxShadow = `0 0 20px hsl(${hue}, 100%, 50%), 0 0 40px hsl(${hue}, 100%, 50%)`;
             
             container.appendChild(firework);
             setTimeout(() => firework.remove(), 1000);
@@ -569,16 +567,31 @@ function makeWish() {
 
 function showWishPopup() {
     const popupContainer = document.getElementById('popupContainer');
+    popupContainer.style.display = 'flex';
+    
     const popup = document.createElement('div');
     popup.className = 'popup';
     popup.innerHTML = `
         <h3>✨ Make a Wish! ✨</h3>
         <p>Tutup mata, ucapkan doamu...</p>
         <p>Semoga semua harapanmu terkabul! 🌟</p>
-        <button onclick="this.parentElement.remove(); startPetalRain();">Amin ❤️</button>
+        <button onclick="this.parentElement.remove(); closeWishPopup(); startPetalRain();">Amin ❤️</button>
     `;
     popupContainer.appendChild(popup);
     setTimeout(() => popup.classList.add('show'), 100);
+}
+
+function closeWishPopup() {
+    const popup = document.querySelector('.popup');
+    const popupContainer = document.getElementById('popupContainer');
+    
+    if (popup) {
+        popup.classList.remove('show');
+        setTimeout(() => {
+            popupContainer.style.display = 'none';
+            popupContainer.innerHTML = '';
+        }, 400);
+    }
 }
 
 // Initialize on page load

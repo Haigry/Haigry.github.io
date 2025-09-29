@@ -56,15 +56,17 @@ button {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: bold;
     color: white;
-    padding: 15px 30px;
-    background: linear-gradient(145deg, #ff69b4, #ff1493);
-    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.2);
-    font-size: 16px;
+    background: linear-gradient(145deg, #29ff98, #458514);
+    font-size: 18px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(63, 81, 181, 0.2);
+    text-transform: none;
 }
 
 button:hover {
+    background: linear-gradient(145deg, #337db6, #38c1dc);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
+    box-shadow: 0 8px 20px rgba(20, 149, 255, 0.3);
 }
 
 button:active {
@@ -272,6 +274,14 @@ button:active {
         0 0 40px rgba(255,165,0,0.4),
         0 0 60px rgba(255,165,0,0.2),
         0 0 80px rgba(255,165,0,0.1);
+}
+
+.make-wish {
+    background: linear-gradient(145deg, #98c1d9, #7ba7bf) !important;
+    font-size: 22px !important;
+    padding: 20px 40px !important;
+    margin: 30px auto !important;
+    display: block;
 }
 
 /* Friend Message Section */
@@ -498,20 +508,39 @@ button:active {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    overflow: hidden;
 }
 
 /* Particle Effects */
+#particlesContainer, #fireworksContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .particle {
     position: fixed;
     font-size: 24px;
     pointer-events: none;
     z-index: 100;
-    animation: particleFall 8s linear infinite;
 }
 
-.heart { color: var(--color-accent); }
-.star { color: var(--color-primary); }
-.butterfly { color: var(--color-secondary); }
+.heart { 
+    color: var(--color-accent);
+    animation: particleFallHeart 10s ease-in-out forwards;
+}
+
+.star { 
+    color: var(--color-primary);
+    animation: particleFallStar 12s ease-in-out forwards;
+}
+
+.butterfly { 
+    color: var(--color-secondary);
+    animation: particleFallButterfly 14s ease-in-out forwards;
+}
 
 .petal {
     position: fixed;
@@ -521,7 +550,17 @@ button:active {
     border-radius: 150% 0 150% 0;
     transform: rotate(45deg);
     z-index: 100;
-    animation: particleFall 8s linear infinite;
+    animation: particleFallPetal 11s ease-in-out forwards;
+}
+
+.firework {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 150;
+    animation: explode 1s ease-out forwards;
 }
 
 /* Animations */
@@ -608,15 +647,42 @@ button:active {
     }
 }
 
+@keyframes particleFallHeart {
+    0% { transform: translateY(-5vh) translateX(0) rotate(0deg) scale(1); opacity: 1; }
+    25% { transform: translateY(25vh) translateX(calc(var(--drift) * 0.5vw)) rotate(90deg) scale(1.2); }
+    50% { transform: translateY(50vh) translateX(calc(var(--drift) * 1vw)) rotate(180deg) scale(0.8); }
+    75% { transform: translateY(75vh) translateX(calc(var(--drift) * 0.5vw)) rotate(270deg) scale(1.1); }
+    100% { transform: translateY(105vh) translateX(calc(var(--drift) * 1vw)) rotate(360deg); opacity: 0; }
+}
+
+@keyframes particleFallStar {
+    0% { transform: translateY(-5vh) translateX(0) rotate(0deg); opacity: 1; }
+    30% { transform: translateY(30vh) translateX(calc(var(--drift) * -0.7vw)) rotate(120deg); }
+    60% { transform: translateY(60vh) translateX(calc(var(--drift) * 1.2vw)) rotate(240deg); }
+    100% { transform: translateY(105vh) translateX(calc(var(--drift) * 1vw)) rotate(360deg); opacity: 0; }
+}
+
+@keyframes particleFallButterfly {
+    0% { transform: translateY(-5vh) translateX(0) rotate(0deg); opacity: 1; }
+    20% { transform: translateY(20vh) translateX(calc(var(--drift) * 1.5vw)) rotate(45deg); }
+    40% { transform: translateY(40vh) translateX(calc(var(--drift) * -1vw)) rotate(-30deg); }
+    60% { transform: translateY(60vh) translateX(calc(var(--drift) * 2vw)) rotate(60deg); }
+    80% { transform: translateY(80vh) translateX(calc(var(--drift) * -0.5vw)) rotate(-20deg); }
+    100% { transform: translateY(105vh) translateX(calc(var(--drift) * 1vw)) rotate(0deg); opacity: 0; }
+}
+
+@keyframes particleFallPetal {
+    0% { transform: translateY(-5vh) translateX(0) rotate(45deg); opacity: 1; }
+    25% { transform: translateY(25vh) translateX(calc(var(--drift) * -1vw)) rotate(135deg); }
+    50% { transform: translateY(50vh) translateX(calc(var(--drift) * 1.5vw)) rotate(225deg); }
+    75% { transform: translateY(75vh) translateX(calc(var(--drift) * -0.5vw)) rotate(315deg); }
+    100% { transform: translateY(105vh) translateX(calc(var(--drift) * 1vw)) rotate(405deg); opacity: 0; }
+}
+
 @keyframes explode {
-    0% {
-        transform: scale(0);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(30);
-        opacity: 0;
-    }
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(15); opacity: 0.5; }
+    100% { transform: scale(30); opacity: 0; }
 }
 
 canvas {
