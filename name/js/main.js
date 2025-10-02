@@ -1,9 +1,5 @@
 const pesan = [
-    "Hai, [Nama] sahabatku yang keren!",
-    "Selamat Sweet Seventeen, bestie!",
-    "Kamu adalah sahabat terbaik yang bisa kuminta",
-    "Semoga persahabatan kita abadi selamanya",
-    "Aku bersyukur memilikimu sebagai sahabat!"
+    "Hai, [Nama] Selamat ulang tahu yahhh, lorem ipsum dolor sit amet !",//maksimal berapa baris yakkk
 ];
 let indeksPesanSekarang = 0;
 let audioElement;
