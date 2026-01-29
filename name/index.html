@@ -1,29 +1,62 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#3d5a80">
-    <title>page untuk ulang tahun</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#667eea">
+    <meta name="description" content="Hadiah Ulang Tahun Spesial - Sebuah Kejutan yang Dibuat Khusus Untukmu">
+    <title>🎉 Selamat Ulang Tahun! 🎂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Pacifico&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loading-content">
+            <h1 class="loading-title">🎉 Mempersiapkan halaman... ✨</h1>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            <p class="loading-text">Halaman yang khusus dibuat untukmu...</p>
+        </div>
+    </div>
+    <!-- Particle background canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Music Start Overlay -->
     <div id="musicStart">
-        <button class="btn-start" onclick="mulaiMusik()">Siap?</button>
+        <button class="btn-start" onclick="mulaiMusik()">Siap? 🎵</button>
     </div>
 
+    <!-- Balloons Container -->
+    <!-- <div id="balloonsContainer"></div> -->
+
+    <!-- Gift Boxes Container -->
+    <div id="giftBoxesContainer"></div>
+
+    <!-- Interactive Emojis Container -->
+    <!-- <div id="floatingEmojisContainer"></div> -->
+
+    <!-- Effects Container -->
     <div id="effectsContainer">
         <div id="particlesContainer"></div>
         <div id="fireworksContainer"></div>
     </div>
 
+    <!-- Content Container -->
     <div id="contentContainer">
+        <!-- Name Input Section -->
         <div id="nameInput">
-            <h2>Pilih nama yang kamu suka:</h2>
+            <h2>Mau pilih sendiri atau dipilihin? ✨</h2>
             <div id="nameButtons">
                 <button class="name-btn" onclick="pilihNama('Haryo')">Haryo</button>
                 <button class="name-btn" onclick="pilihNama('Iyok')">Iyok</button>
@@ -31,15 +64,16 @@
                 <button class="name-btn" onclick="pilihNama('Via')">Via</button>
                 <button class="name-btn" onclick="pilihNama('Nugraha')">Nugraha</button>
             </div>
-            <button class="btn-start" onclick="mulaiPerayaan()">Mulai!</button>
+            <button class="btn-start" onclick="mulaiPerayaan()">Mulai! 🎉</button>
         </div>
 
+        <!-- Popup Containers -->
         <div id="popupContainer"></div>
-         <div id="popupContainerWish"></div>
+        <div id="popupContainerWish"></div>
 
+        <!-- Main Content -->
         <div id="mainContent">
-            <h1>Anjay ultah, <span id="friendNameDisplay"></span>!</h1>
-            <p style="font-size: 24px;">🎉🎂✨</p>
+            <h1>Anjay ultah, <span id="friendNameDisplay"></span>! 🎉🎂✨</h1>
 
             <div class="image-gallery">
                 <img src="assets/images/IMG_8431.JPG" alt="Gambar 1">
@@ -47,28 +81,77 @@
                 <img src="assets/images/IMG_8450.JPG" alt="Gambar 3">
             </div>
 
-            <div id="candleContainer"></div>
+            <!-- 3D Birthday Cake -->
+            <div class="cake-section">
+                <div class="cake-3d">
+                    <div class="cake-candles" id="candleContainer"></div>
+                    <div class="cake-layer cake-layer-1">
+                        <div class="frosting frosting-1"></div>
+                    </div>
+                    <div class="cake-layer cake-layer-2">
+                        <div class="frosting frosting-2"></div>
+                    </div>
+                    <div class="cake-layer cake-layer-3">
+                        <div class="frosting frosting-3"></div>
+                    </div>
+                    <div class="cake-sparkles"></div>
+                </div>
+            </div>
             <button onclick="makeWish()" class="make-wish">✨ Make a Wish! ✨</button>
 
             <div id="friendMessage">
-                <h3>Tulis Pesanmu</h3>
+                <h3>Tulis Pesanmu 💌</h3>
                 <textarea id="messageText" placeholder="Tuliskan balasan dan harapanmu di sini..."></textarea>
-                <button class="btn-action" onclick="kirimPesanSahabat()">Kirim Pesanmu</button>
+                <button class="btn-action" onclick="kirimPesanSahabat()">Kirim Pesanmu 📤</button>
                 <div id="messageResult"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Photo Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImage">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev">&#10094;</button>
+            <button class="lightbox-next">&#10095;</button>
         </div>
     </div>
-    <script src="js/main.js"></script>
+
+    <!-- Achievement Display
+    <div id="achievementContainer"></div> -->
+
+    <!-- Audio Visualizer -->
+    <canvas id="audioVisualizerCanvas"></canvas>
+
+    <!-- Audio Controls -->
     <div id="audioControls">
         <select id="audioSelect">
-            <option value="https://raw.githubusercontent.com/Haigry/Haigry.github.io/main/name/assets/audio/Romantic%20Birthday%20Song%20for%20Lovers%20No.%202%20in%20A%20Major.mp3">Birthday Song 🎵</option>
-            <option value="https://raw.githubusercontent.com/Haigry/Haigry.github.io/main/name/assets/audio/Romantic%20Birthday%20Song%20for%20Lovers%20No.%202%20in%20A%20Major.mp3">Sweet Melody 🎶</option>
-            <option value="https://raw.githubusercontent.com/Haigry/Haigry.github.io/main/name/assets/audio/Romantic%20Birthday%20Song%20for%20Lovers%20No.%202%20in%20A%20Major.mp3">Celebration 🎊</option>
+            <option value="assets/audio/Romantic Birthday Song for Lovers No. 2 in A Major.mp3">🎂 Birthday Song
+            </option>
+            <option value="assets/audio/Franky Sihombing - Jangan Lelah (official lyric video).mp3">🎵 Jangan Lelah
+            </option>
+            <option value="assets/audio/Gigi Perez - Sailor Song (Lyrics).mp3">⛵ Sailor Song</option>
+            <option value="assets/audio/Hindia - everything u are.mp3">✨ Everything U Are</option>
+            <option value="assets/audio/【MV】Fond Memories - Kobo Kanaeru.mp3">💭 Fond Memories</option>
         </select>
-        <button id="playPauseButton">Play</button>
+        <button id="playPauseButton">▶</button>
         <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.7">
+        <button id="lyricsToggle" title="Show/Hide Lyrics">📝</button>
     </div>
-</body>
-</html>
 
+    <!-- Lyrics Display -->
+    <div id="lyricsContainer" class="lyrics-hidden">
+        <div class="lyrics-content">
+            <h3 id="lyricsTitle">Lirik Lagu</h3>
+            <div id="lyricsText" class="lyrics-text">
+                Pilih lagu untuk melihat lirik...
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
