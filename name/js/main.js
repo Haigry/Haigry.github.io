@@ -1104,51 +1104,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ============ ADVANCED FEATURES IMPLEMENTATION ============
-
-// Achievement System
-// const achievements = {
-//     music: { id: 'music', icon: '\ud83c\udfb5', title: 'Music Lover', description: 'Started the celebration music!', unlocked: false },
-//     nameSelector: { id: 'nameSelector', icon: '\ud83c\udfaf', title: 'Name Selector', description: 'Chose a special name!', unlocked: false },
-//     candleBlower: { id: 'candleBlower', icon: '\ud83d\udd6f\ufe0f', title: 'Candle Blower', description: 'Blew out all candles!', unlocked: false },
-//     wishMaker: { id: 'wishMaker', icon: '\u2728', title: 'Wish Maker', description: 'Made a special wish!', unlocked: false },
-//     messageSender: { id: 'messageSender', icon: '\ud83d\udc8c', title: 'Message Sender', description: 'Sent a heartfelt message!', unlocked: false },
-//     fireworksMaster: { id: 'fireworksMaster', icon: '\ud83c\udf86', title: 'Fireworks Master', description: 'Launched spectacular fireworks!', unlocked: false },
-//     balloonPopper: { id: 'balloonPopper', icon: '\ud83c\udf88', title: 'Balloon Popper', description: 'Popped 5 balloons!', unlocked: false },
-//     giftCollector: { id: 'giftCollector', icon: '\ud83c\udf81', title: 'Gift Collector', description: 'Collected 10 gift boxes!', unlocked: false }
-// };
-
-// let balloonsPoppedCount = 0;
-// let giftsCollectedCount = 0;
-
-// function unlockAchievement(achievementId) {
-//     const achievement = achievements[achievementId];
-//     if (!achievement || achievement.unlocked) return;
-
-//     achievement.unlocked = true;
-
-//     const container = document.getElementById('achievementContainer');
-//     container.classList.add('show');
-
-//     const badge = document.createElement('div');
-//     badge.className = 'achievement-badge gold';
-//     badge.innerHTML = `
-//         <h4><span class="achievement-icon">${achievement.icon}</span> ${achievement.title}</h4>
-//         <p>${achievement.description}</p>
-//     `;
-
-//     container.appendChild(badge);
-
-//     setTimeout(() => {
-//         container.classList.remove('show');
-//     }, 4000);
-
-//     setTimeout(() => {
-//         badge.remove();
-//     }, 4500);
-
-//     createConfetti();
-// }
 
 // Loading Screen
 function initLoadingScreen() {
@@ -1158,78 +1113,78 @@ function initLoadingScreen() {
     }, 2500);
 }
 
-// // Balloon System
-// function createBalloons() {
-//     const container = document.getElementById('balloonsContainer');
-//     const colors = ['#ff6b6b', '#4ecdc4', '#ffd93d', '#a29bfe', '#fd79a8', '#fdcb6e'];
+// Balloon System
+function createBalloons() {
+    const container = document.getElementById('balloonsContainer');
+    const colors = ['#ff6b6b', '#4ecdc4', '#ffd93d', '#a29bfe', '#fd79a8', '#fdcb6e'];
 
-//     setInterval(() => {
-//         if (Math.random() > 0.7) {
-//             const balloon = document.createElement('div');
-//             balloon.className = 'balloon';
-//             balloon.style.left = `${Math.random() * 90 + 5}vw`;
-//             balloon.style.bottom = '-100px';
-//             balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-//             balloon.style.animationDelay = `${Math.random() * 2}s`;
-//             balloon.style.animationDuration = `${8 + Math.random() * 4}s`;
+    setInterval(() => {
+        if (Math.random() > 0.7) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = `${Math.random() * 90 + 5}vw`;
+            balloon.style.bottom = '-100px';
+            balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.animationDelay = `${Math.random() * 2}s`;
+            balloon.style.animationDuration = `${8 + Math.random() * 4}s`;
 
-//             balloon.addEventListener('click', () => {
-//                 balloon.classList.add('popped');
-//                 createSparklesAt(balloon);
-//                 balloonsPoppedCount++;
-//                 showNotification(`\ud83c\udf88 Balloon Popped! (${balloonsPoppedCount}/5)`, 'success');
+            balloon.addEventListener('click', () => {
+                balloon.classList.add('popped');
+                createSparklesAt(balloon);
+                balloonsPoppedCount++;
+                showNotification(`\ud83c\udf88 Balloon Popped! (${balloonsPoppedCount}/5)`, 'success');
 
-//                 if (balloonsPoppedCount >= 5 && !achievements.balloonPopper.unlocked) {
-//                     unlockAchievement('balloonPopper');
-//                 }
+                if (balloonsPoppedCount >= 5 && !achievements.balloonPopper.unlocked) {
+                    unlockAchievement('balloonPopper');
+                }
 
-//                 setTimeout(() => balloon.remove(), 300);
-//             });
+                setTimeout(() => balloon.remove(), 300);
+            });
 
-//             container.appendChild(balloon);
+            container.appendChild(balloon);
 
-//             setTimeout(() => balloon.remove(), 12000);
-//         }
-//     }, 3000);
-// }
+            setTimeout(() => balloon.remove(), 12000);
+        }
+    }, 3000);
+}
 
-// // Gift Box Rain
-// function createGiftBoxRain() {
-//     const container = document.getElementById('giftBoxesContainer');
+// Gift Box Rain
+function createGiftBoxRain() {
+    const container = document.getElementById('giftBoxesContainer');
 
-//     setInterval(() => {
-//         if (Math.random() > 0.8) {
-//             const giftBox = document.createElement('div');
-//             giftBox.className = 'gift-box';
-//             giftBox.style.left = `${Math.random() * 90 + 5}vw`;
-//             giftBox.style.top = '-100px';
+    setInterval(() => {
+        if (Math.random() > 0.8) {
+            const giftBox = document.createElement('div');
+            giftBox.className = 'gift-box';
+            giftBox.style.left = `${Math.random() * 90 + 5}vw`;
+            giftBox.style.top = '-100px';
 
-//             giftBox.innerHTML = `
-//                 <div class="gift-box-body">
-//                     <div class="gift-box-ribbon-v"></div>
-//                     <div class="gift-box-ribbon-h"></div>
-//                     <div class="gift-box-bow"></div>
-//                 </div>
-//             `;
+            giftBox.innerHTML = `
+                <div class="gift-box-body">
+                    <div class="gift-box-ribbon-v"></div>
+                    <div class="gift-box-ribbon-h"></div>
+                    <div class="gift-box-bow"></div>
+                </div>
+            `;
 
-//             giftBox.addEventListener('click', () => {
-//                 createGiftExplosion(giftBox);
-//                 giftsCollectedCount++;
-//                 showNotification(`\ud83c\udf81 Gift Collected! (${giftsCollectedCount}/10)`, 'success');
+            giftBox.addEventListener('click', () => {
+                createGiftExplosion(giftBox);
+                giftsCollectedCount++;
+                showNotification(`\ud83c\udf81 Gift Collected! (${giftsCollectedCount}/10)`, 'success');
 
-//                 if (giftsCollectedCount >= 10 && !achievements.giftCollector.unlocked) {
-//                     unlockAchievement('giftCollector');
-//                 }
+                if (giftsCollectedCount >= 10 && !achievements.giftCollector.unlocked) {
+                    unlockAchievement('giftCollector');
+                }
 
-//                 giftBox.remove();
-//             });
+                giftBox.remove();
+            });
 
-//             container.appendChild(giftBox);
+            container.appendChild(giftBox);
 
-//             setTimeout(() => giftBox.remove(), 4500);
-//         }
-//     }, 2500);
-// }
+            setTimeout(() => giftBox.remove(), 4500);
+        }
+    }, 2500);
+}
 
 function createGiftExplosion(element) {
     const rect = element.getBoundingClientRect();
@@ -1422,101 +1377,22 @@ function add3DCakeSparkles() {
     }, 500);
 }
 
-// Audio Visualizer
-let audioContext;
-let analyser;
-let dataArray;
-let bufferLength;
-let animationId;
-
-function initAudioVisualizer() {
-    const canvas = document.getElementById('audioVisualizerCanvas');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = 100;
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-    });
-
-    // Audio visualizer - only create once and ensure audio still plays
-    let visualizerInitialized = false;
-    audioElement.addEventListener('play', () => {
-        if (!visualizerInitialized && audioContext === undefined) {
-            try {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                const source = audioContext.createMediaElementSource(audioElement);
-                source.connect(analyser);
-                analyser.connect(audioContext.destination); // CRITICAL: must connect to destination for sound!
-                analyser.fftSize = 256;
-                bufferLength = analyser.frequencyBinCount;
-                dataArray = new Uint8Array(bufferLength);
-                visualizerInitialized = true;
-                console.log('Audio visualizer initialized successfully');
-                visualize();
-            } catch (e) {
-                console.log('Audio visualizer not available:', e);
-                // Visualizer failed, but audio should still play normally
-            }
-        }
-    });
-
-    function visualize() {
-        if (!analyser) return;
-
-        animationId = requestAnimationFrame(visualize);
-
-        analyser.getByteFrequencyData(dataArray);
-
-        ctx.fillStyle = 'rgba(10, 10, 15, 0.3)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        const barWidth = (canvas.width / bufferLength) * 2.5;
-        let x = 0;
-
-        for (let i = 0; i < bufferLength; i++) {
-            const barHeight = (dataArray[i] / 255) * canvas.height * 0.8;
-
-            const hue = (i / bufferLength) * 360;
-            ctx.fillStyle = `hsla(${hue}, 70%, 60%, 0.8)`;
-
-            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-            x += barWidth + 1;
-        }
-    }
-}
-
 // Enhanced mulaiMusik with achievement
 const originalMulaiMusik = window.mulaiMusik;
 window.mulaiMusik = function () {
     originalMulaiMusik();
-    unlockAchievement('music');
 };
 
 // Enhanced pilihNama with achievement
 const originalPilihNama = window.pilihNama;
 window.pilihNama = function (nama) {
     originalPilihNama(nama);
-    if (!achievements.nameSelector.unlocked) {
-        unlockAchievement('nameSelector');
-    }
 };
 
 // Enhanced toggleFlame for candle blower achievement
-let candlesBlownCount = 0;
 const originalToggleFlame = window.toggleFlame;
 window.toggleFlame = function (candle) {
     const flame = candle.querySelector('.flame');
-    if (flame && flame.style.display !== 'none') {
-        candlesBlownCount++;
-        if (candlesBlownCount >= 3 && !achievements.candleBlower.unlocked) {
-            unlockAchievement('candleBlower');
-        }
-    }
     originalToggleFlame(candle);
 };
 
@@ -1524,27 +1400,19 @@ window.toggleFlame = function (candle) {
 const originalMakeWish = window.makeWish;
 window.makeWish = function () {
     originalMakeWish();
-    setTimeout(() => {
-        if (!achievements.wishMaker.unlocked) {
-            unlockAchievement('wishMaker');
-        }
-    }, 1000);
+    setTimeout(() => {}, 1000);
 };
 
 // Enhanced kirimPesanSahabat with achievement
 const originalKirimPesanSahabat = window.kirimPesanSahabat;
 window.kirimPesanSahabat = function () {
     originalKirimPesanSahabat();
-    if (!achievements.messageSender.unlocked) {
-        unlockAchievement('messageSender');
-    }
 };
 
 // Initialize all advanced features
 window.addEventListener('load', () => {
     initLoadingScreen();
     initLightbox();
-    // initAudioVisualizer(); // DISABLED: CORS error on file:// makes audio silent
 
     // Start effects after loading
     setTimeout(() => {

@@ -293,29 +293,197 @@ html {
 }
 
 /* Image Gallery */
-.image-gallery {
+/* Photocard Gallery Section */
+.photocard-section {
+    position: relative;
+    margin: 60px auto 80px;
+    padding: 40px 20px;
+    max-width: 1000px;
+}
+
+/* Hanging String */
+.hanging-string {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 3px;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 10%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.3) 90%,
+            rgba(255, 255, 255, 0) 100%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.photocard-gallery {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin: 40px auto;
+    align-items: flex-start;
+    gap: 40px;
     flex-wrap: wrap;
+    padding-top: 30px;
 }
 
-.image-gallery img {
-    width: calc(33.333% - 15px);
-    min-width: 200px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
-    border: 3px solid var(--card-border);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+/* Individual Photocard Container */
+.photocard {
+    position: relative;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5));
+    animation: gentleSwing 4s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.photocard:nth-child(1) {
+    animation-delay: 0s;
+    transform: rotate(-3deg);
+}
+
+.photocard:nth-child(2) {
+    animation-delay: 0.5s;
+    transform: rotate(2deg);
+}
+
+.photocard:nth-child(3) {
+    animation-delay: 1s;
+    transform: rotate(-2deg);
+}
+
+/* Clothespin/Pin at top */
+.clothespin {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+    border-radius: 4px 4px 10px 10px;
+    z-index: 2;
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.clothespin::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 20px;
+    background: #2c1810;
+    border-radius: 2px;
+}
+
+.clothespin::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 14px;
+    background: linear-gradient(180deg, #6b3410 0%, #8B4513 100%);
+    border-radius: 2px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Polaroid Frame */
+.polaroid {
+    background: white;
+    padding: 12px 12px 45px 12px;
+    border-radius: 3px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    width: 240px;
 }
 
-.image-gallery img:hover {
-    transform: translateY(-10px) scale(1.05);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 20px 60px rgba(250, 139, 255, 0.4);
+.polaroid:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 12px 24px rgba(0, 0, 0, 0.2),
+        0 0 0 4px rgba(250, 139, 255, 0.3);
+}
+
+.polaroid-image {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.polaroid-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.polaroid:hover .polaroid-image img {
+    transform: scale(1.1);
+}
+
+.polaroid-caption {
+    text-align: center;
+    padding: 12px 8px 0;
+    font-family: 'Caveat', cursive, 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Gentle swing animation */
+@keyframes gentleSwing {
+
+    0%,
+    100% {
+        transform: rotate(var(--initial-rotation, 0deg)) translateY(0);
+    }
+
+    25% {
+        transform: rotate(calc(var(--initial-rotation, 0deg) - 1deg)) translateY(-2px);
+    }
+
+    50% {
+        transform: rotate(var(--initial-rotation, 0deg)) translateY(0);
+    }
+
+    75% {
+        transform: rotate(calc(var(--initial-rotation, 0deg) + 1deg)) translateY(-2px);
+    }
+}
+
+/* Mobile: Keep photocard size same as desktop for consistency */
+@media (max-width: 768px) {
+    .photocard-section {
+        overflow-x: auto;
+        padding: 40px 10px;
+    }
+
+    .photocard-gallery {
+        gap: 30px;
+        min-width: min-content;
+    }
+}
+
+@media (max-width: 480px) {
+    .photocard-section {
+        padding: 30px 5px;
+        margin: 40px auto 60px;
+    }
 }
 
 /* Candle Container */
@@ -380,23 +548,23 @@ html {
 /* Make Wish Button */
 .make-wish {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    padding: 20px 50px !important;
-    margin: 40px auto !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    padding: 15px 35px !important;
+    margin: 30px auto !important;
     background: var(--success-gradient) !important;
     border: none !important;
     border-radius: 50px !important;
     color: white !important;
     cursor: pointer !important;
-    box-shadow: 0 10px 40px rgba(250, 139, 255, 0.4) !important;
+    box-shadow: 0 8px 30px rgba(250, 139, 255, 0.4) !important;
     transition: all 0.3s ease !important;
     display: block !important;
 }
 
 .make-wish:hover {
     transform: translateY(-5px) !important;
-    box-shadow: 0 15px 60px rgba(250, 139, 255, 0.6) !important;
+    box-shadow: 0 12px 50px rgba(250, 139, 255, 0.6) !important;
 }
 
 /* Friend Message Section */

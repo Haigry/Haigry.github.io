@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Ella!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader / Envelope Opening -->
+    <div id="preloader" class="preloader">
+        <div class="stars-bg" id="starsBg"></div>
+        <div class="preloader-content">
+            <div class="envelope" id="envelope">
+                <div class="envelope-wrapper">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+                        <div class="envelope-letter">
+                            <span>💌</span>
+                        </div>
+                    </div>
+                    <div class="envelope-shadow"></div>
+                </div>
+            </div>
+            <p class="preloader-text">Klik layarmu untuk memulai cerita.... 💌</p>
+            <div class="preloader-particles" id="preParticles"></div>
+        </div>
+    </div>
+
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Floating particles container -->
+    <div id="particles"></div>
+
+    <!-- Aurora Background -->
+    <div class="aurora-bg">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content hidden">
+
+        <!-- Scene 1: Grand Entrance -->
+        <section class="scene scene-entrance" id="scene1">
+            <div class="floating-emojis">
+                <span class="float-emoji" style="--delay:0s; --x:10%; --size:2.5rem">🎈</span>
+                <span class="float-emoji" style="--delay:0.5s; --x:25%; --size:1.8rem">🎉</span>
+                <span class="float-emoji" style="--delay:1s; --x:40%; --size:2rem">🎊</span>
+                <span class="float-emoji" style="--delay:1.5s; --x:55%; --size:1.5rem">✨</span>
+                <span class="float-emoji" style="--delay:2s; --x:70%; --size:2.2rem">🎈</span>
+                <span class="float-emoji" style="--delay:2.5s; --x:85%; --size:1.8rem">🎉</span>
+                <span class="float-emoji" style="--delay:0.3s; --x:15%; --size:1.6rem">🌟</span>
+                <span class="float-emoji" style="--delay:1.3s; --x:50%; --size:2rem">💫</span>
+                <span class="float-emoji" style="--delay:2.3s; --x:75%; --size:1.4rem">🎊</span>
+                <span class="float-emoji" style="--delay:0.8s; --x:90%; --size:2rem">🌸</span>
+                <span class="float-emoji" style="--delay:1.8s; --x:5%; --size:1.8rem">💖</span>
+                <span class="float-emoji" style="--delay:3s; --x:60%; --size:1.6rem">🦋</span>
+            </div>
+            <div class="scene-content">
+                <div class="sparkle-ring">
+                    <div class="ring-particle" style="--i:0"></div>
+                    <div class="ring-particle" style="--i:1"></div>
+                    <div class="ring-particle" style="--i:2"></div>
+                    <div class="ring-particle" style="--i:3"></div>
+                    <div class="ring-particle" style="--i:4"></div>
+                    <div class="ring-particle" style="--i:5"></div>
+                    <div class="ring-particle" style="--i:6"></div>
+                    <div class="ring-particle" style="--i:7"></div>
+                    <div class="ring-particle" style="--i:8"></div>
+                    <div class="ring-particle" style="--i:9"></div>
+                    <div class="ring-particle" style="--i:10"></div>
+                    <div class="ring-particle" style="--i:11"></div>
+                    <div class="ring-particle" style="--i:12"></div>
+                    <div class="ring-particle" style="--i:13"></div>
+                    <div class="ring-particle" style="--i:14"></div>
+                    <div class="ring-particle" style="--i:15"></div>
+                </div>
+                <h1 class="grand-title">
+                    <span class="title-line title-line-1">Happy</span>
+                    <span class="title-line title-line-2">Birthday</span>
+                </h1>
+                <div class="name-reveal">
+                    <span class="name-text" id="nameText"></span>
+                    <div class="name-underline"></div>
+                </div>
+                <div class="date-badge-container">
+                    <p class="date-badge">🎂 14 Februari 2026 🎂</p>
+                    <div class="days-counter">
+                        <span class="counter-number" id="daysCount">7</span>
+                        <span class="counter-label">hari yang lalu ✨</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 2: Birthday Message -->
+        <section class="scene scene-message" id="scene2">
+            <div class="message-container">
+                <div class="message-card" data-animate>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="cake-emoji">🎂</div>
+                        <h2 class="message-title">Teruntuk Claudia "Ella"</h2>
+                        <div class="divider">
+                            <span class="divider-star">⭐</span>
+                        </div>
+                        <p class="message-text typewrite" data-text="Maaf yaa aku buat ini aga telat, tapi semua doa dan harapan untukmu engga beruba kokk! 💝"></p>
+                        <p class="message-text typewrite" data-text="Semoga dengan kamu melangkah ke tahun yang baru iniii, semua impian dan cita-citamu dahulu dapat kamuu capai tahun ini. Semoga selalu dikelilingi oleh orang-orang yang menyayangimu, yang membuatmu bahagia, juga doa untuk kamu yang selalu sehat selalu. 🌸"></p>
+                        <p class="message-text typewrite" data-text="Semoga kamu tetap kuat meskipun banyak orang yang mulai menjauh, karena setiap pertemuan adalah awal dari perpisahan! 🌸"></p>
+                        <p class="message-text highlight typewrite" data-text="You are more than enough, and more than you probably know. ✨"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 3: Wishes Cards -->
+        <section class="scene scene-wishes" id="scene3">
+            <h2 class="section-title" data-animate>Kata-kata manis untukmu🌟</h2>
+            <div class="wishes-grid">
+                <div class="wish-card" data-animate style="--card-delay: 0.1s">
+                    <div class="wish-glow"></div>
+                    <div class="wish-icon">💖</div>
+                    <p>Kamu mungkin tidak tahu, bahwa hal-hal kecil yang kamu lakukan dapat membuat orang lain tersenyum. Semoga kamu dapat selalu menjadi pribadi yang baik dan dapat menghhargai setiap tindakan.</p>
+                    <div class="wish-sparkles">
+                        <span>✦</span><span>✧</span><span>✦</span>
+                    </div>
+                </div>
+                <div class="wish-card" data-animate style="--card-delay: 0.2s">
+                    <div class="wish-glow"></div>
+                    <div class="wish-icon">🌟</div>
+                    <p>Mekarlah dimanapun kamu tumbuh, temukan jalan setiap mimpi yang telah kamu simpan selama ini.</p>
+                    <div class="wish-sparkles">
+                        <span>✦</span><span>✧</span><span>✦</span>
+                    </div>
+                </div>
+                <div class="wish-card" data-animate style="--card-delay: 0.3s">
+                    <div class="wish-glow"></div>
+                    <div class="wish-icon">💪</div>
+                    <p>Like stars that shine brighest in darkness sky, semoga kamu dapat menemukan cahaya bahkan didalam hari yang sangat berat untukmu.</p>
+                    <div class="wish-sparkles">
+                        <span>✦</span><span>✧</span><span>✦</span>
+                    </div>
+                </div>
+                <div class="wish-card" data-animate style="--card-delay: 0.4s">
+                    <div class="wish-glow"></div>
+                    <div class="wish-icon">🌈</div>
+                    <p>Dirimu adalah kamu apa adanya, dengan segala tingkah lagu dan sifat unikmu.</p>
+                    <div class="wish-sparkles">
+                        <span>✦</span><span>✧</span><span>✦</span>
+                    </div>
+                </div>
+                <div class="wish-card" data-animate style="--card-delay: 0.5s">
+                    <div class="wish-glow"></div>
+                    <div class="wish-icon">🤗</div>
+                    <p>Jangan lupa kalau kamu sedang sedih, capek, ataupun kehilangan arah, masih ada orang yang akan datang dan mengisi kekosonganmu termasuk diriku.</p>
+                    <div class="wish-sparkles">
+                        <span>✦</span><span>✧</span><span>✦</span>
+                    </div>
+                </div>
+                <div class="wish-card" data-animate style="--card-delay: 0.6s">
+                    <div class="wish-glow"></div>
+                    <div class="wish-icon">🌸</div>
+                    <p>Dengan melihatmu tumbuh dan berkembang, aku selalu berharap kamu tetap menjadi dirimu sendiri dan tetap bahagia.</p>
+                    <div class="wish-sparkles">
+                        <span>✦</span><span>✧</span><span>✦</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 4: Interactive Candles / Cake -->
+        <section class="scene scene-candles" id="scene4">
+            <h2 class="section-title" data-animate>Tiup Lilinnya! 🕯️</h2>
+            <p class="candle-instruction" data-animate>Klik lilin satu per satu untuk meniupnya dan buat permohonan!</p>
+            <div class="cake-display">
+                <div class="cake-3d">
+                    <div class="cake-glow-base"></div>
+                    <div class="cake">
+                        <div class="cake-top">
+                            <div class="candles-row">
+                                <div class="candle" data-candle="1">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame">
+                                        <div class="flame-inner"></div>
+                                        <div class="flame-outer"></div>
+                                    </div>
+                                    <div class="candle-body" style="--candle-color: #ff6b9d"></div>
+                                </div>
+                                <div class="candle" data-candle="2">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame">
+                                        <div class="flame-inner"></div>
+                                        <div class="flame-outer"></div>
+                                    </div>
+                                    <div class="candle-body" style="--candle-color: #c44dff"></div>
+                                </div>
+                                <div class="candle" data-candle="3">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame">
+                                        <div class="flame-inner"></div>
+                                        <div class="flame-outer"></div>
+                                    </div>
+                                    <div class="candle-body" style="--candle-color: #ffd93d"></div>
+                                </div>
+                                <div class="candle" data-candle="4">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame">
+                                        <div class="flame-inner"></div>
+                                        <div class="flame-outer"></div>
+                                    </div>
+                                    <div class="candle-body" style="--candle-color: #64ffda"></div>
+                                </div>
+                                <div class="candle" data-candle="5">
+                                    <div class="flame-glow"></div>
+                                    <div class="flame">
+                                        <div class="flame-inner"></div>
+                                        <div class="flame-outer"></div>
+                                    </div>
+                                    <div class="candle-body" style="--candle-color: #ff9a56"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cake-tier cake-tier-1">
+                            <div class="cake-frosting frosting-1"></div>
+                            <div class="cake-decorations">
+                                <span>🌸</span><span>✨</span><span>🌸</span><span>✨</span><span>🌸</span>
+                            </div>
+                        </div>
+                        <div class="cake-tier cake-tier-2">
+                            <div class="cake-frosting frosting-2"></div>
+                            <div class="cake-decorations">
+                                <span>💖</span><span>⭐</span><span>💖</span><span>⭐</span><span>💖</span><span>⭐</span><span>💖</span>
+                            </div>
+                        </div>
+                        <div class="cake-tier cake-tier-3">
+                            <div class="cake-frosting frosting-3"></div>
+                            <div class="cake-decorations">
+                                <span>🎀</span><span>💫</span><span>🎀</span><span>💫</span><span>🎀</span><span>💫</span><span>🎀</span><span>💫</span>
+                            </div>
+                        </div>
+                        <div class="cake-plate"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="candles-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="candleProgress"></div>
+                </div>
+                <p class="progress-text"><span id="candleCount">0</span> / 5 lilin ditiup</p>
+            </div>
+            <div class="candles-blown-message hidden" id="candlesBlownMsg">
+                <div class="wish-made">
+                    <span class="wish-emoji">🌠</span>
+                    <p>Semua lilin sudah ditiup!</p>
+                    <p class="wish-sub">Semoga permohonannya terkabul yaa, Ella! 💫</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: Write Your Wish -->
+        <section class="scene scene-write-wish" id="scene5">
+            <h2 class="section-title" data-animate>Tulis Harapanmu 📝</h2>
+            <div class="wish-writer-container" data-animate>
+                <div class="wish-paper">
+                    <div class="paper-corner"></div>
+                    <textarea id="wishInput" class="wish-textarea" placeholder="Kamu bisa menulis harapan atau keinginanmu di sini... ✨" rows="5" maxlength="300"></textarea>
+                    <div class="wish-char-count"><span id="charCount">0</span>/300</div>
+                    <button class="wish-send-btn" id="wishSendBtn">
+                        <span>Kirim ke Bintang ⭐</span>
+                    </button>
+                </div>
+                <div class="sent-wishes" id="sentWishes"></div>
+            </div>
+        </section>
+
+        <!-- Scene 6: Grand Finale -->
+        <section class="scene scene-finale" id="scene6">
+            <div class="finale-fireworks" id="finaleFireworks"></div>
+            <div class="finale-content" data-animate>
+                <div class="heart-container">
+                    <div class="heart-beat">💝</div>
+                    <div class="heart-rings">
+                        <div class="heart-ring" style="--ring-delay: 0s"></div>
+                        <div class="heart-ring" style="--ring-delay: 0.5s"></div>
+                        <div class="heart-ring" style="--ring-delay: 1s"></div>
+                    </div>
+                </div>
+                <h2 class="finale-title">
+                    <span class="finale-line">Selamat Ulang Tahun,</span>
+                    <span class="name-glow finale-name">Claudia!</span>
+                </h2>
+                <p class="finale-text">
+                    Terima kasih sudah menjadi orang yang luar biasa.<br>
+                    Semoga tahun ini menjadi tahun terbaikmu! 🎉 <br>
+                    Maaf yaa kalau rada telat, orangnya sibuk banget <br>
+                    Ini last: <br>
+                    Aku tidak tahu apa yang ada di depan tapi aku tahu satu hal pasti: <br>
+                    wherever life takes you, <br>
+                    aku harap selalu ada kebahagiaan yang menemanimu di sana. Be happy, go far. <br>
+
+                </p>
+                <div class="finale-signature">
+                    <p>Dengan penuh kesadarn,</p>
+                    <p class="signature">Nikname Futur❤️</p>
+                </div>
+                <div class="finale-actions">
+                    <button class="action-btn replay-btn" id="replayBtn">
+                        <span>🎉 Putar Ulang</span>
+                    </button>
+                    <button class="action-btn fireworks-btn" id="fireworksBtn">
+                        <span>🎆 Kembang Api!</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Background Music Toggle -->
+    <button class="music-toggle" id="musicToggle" title="Toggle Music">
+        <div class="music-visualizer">
+            <span class="bar" style="--bar-delay: 0s"></span>
+            <span class="bar" style="--bar-delay: 0.2s"></span>
+            <span class="bar" style="--bar-delay: 0.1s"></span>
+            <span class="bar" style="--bar-delay: 0.3s"></span>
+        </div>
+        <span class="music-label">🎵</span>
+    </button>
+
+    <!-- Heart Rain Toggle -->
+    <button class="heart-rain-toggle" id="heartRainToggle" title="Heart Rain">
+        <span>💕</span>
+    </button>
+
+    <!-- Share Toggle -->
+    <button class="share-toggle" id="shareToggle" title="Share">
+        <span>📤</span>
+    </button>
+
+    <!-- Share Overlay -->
+    <div class="share-overlay" id="shareOverlay">
+        <div class="share-modal">
+            <h3>Bagikan Kejutan 🎉</h3>
+            <p class="share-subtitle">Tangkap & kirim kejutan ini!</p>
+            <div class="share-buttons">
+                <button class="share-btn share-btn-capture" id="shareCaptureBtn">
+                    <span class="btn-icon">📸</span>
+                    <span>Capture Scene Ini</span>
+                </button>
+                <button class="share-btn share-btn-instagram" id="shareInstagram">
+                    <span class="btn-icon">📷</span>
+                    <span>Capture & Share ke IG Story</span>
+                </button>
+                <button class="share-btn share-btn-native" id="shareNative" style="display:none">
+                    <span class="btn-icon">📱</span>
+                    <span>Bagikan via Smartphone</span>
+                </button>
+                <button class="share-btn share-btn-whatsapp" id="shareWhatsApp">
+                    <span class="btn-icon">💬</span>
+                    <span>Kirim via WhatsApp</span>
+                </button>
+                <button class="share-btn share-btn-copy" id="shareCopyLink">
+                    <span class="btn-icon">�</span>
+                    <span>Salin Link</span>
+                </button>
+            </div>
+            <button class="share-close" id="shareClose">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Capture Preview Overlay -->
+    <div class="capture-overlay" id="captureOverlay">
+        <div class="capture-modal">
+            <h3>Preview Capture 📸</h3>
+            <div class="capture-preview-container">
+                <img id="capturePreviewImg" class="capture-preview-img" alt="Captured scene" />
+            </div>
+            <div class="capture-actions">
+                <button class="capture-btn capture-btn-download" id="captureDownloadBtn">
+                    <span>⬇️ Download Gambar</span>
+                </button>
+                <button class="capture-btn capture-btn-share" id="captureShareBtn" style="display:none">
+                    <span>📤 Share Langsung</span>
+                </button>
+            </div>
+            <button class="capture-close" id="captureCloseBtn">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Capture Loading Overlay -->
+    <div class="capture-loading" id="captureLoading">
+        <div class="capture-spinner"></div>
+        <p>Menangkap layar... 📸</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="share-toast" id="shareToast">Link berhasil disalin! 📋</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
